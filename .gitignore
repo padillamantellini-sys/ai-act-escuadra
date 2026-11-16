@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# No subir PDF de las guías AESIA ni texto legal copiado en extenso
+docs/aesia/
+*.pdf

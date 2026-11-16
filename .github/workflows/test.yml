@@ -1,0 +1,12 @@
+name: build-y-test
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 build.py
+      - name: dist debe estar actualizado
+        run: git diff --exit-code dist/index.html
+      - run: pip install playwright && playwright install --with-deps chromium
+      - run: python3 tests/bot_dificultad.py
