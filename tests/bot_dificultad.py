@@ -6,7 +6,7 @@ JS = open(os.path.join(os.path.dirname(__file__), 'bot_nivel.py')).read().split(
 URL = 'file://' + os.path.abspath('dist/index.html')
 async def main():
     async with async_playwright() as p:
-        b = await p.chromium.launch(args=['--no-sandbox'])
+        b = await p.chromium.launch(executable_path=os.environ.get('CHROME') or None,args=['--no-sandbox'])
         pg = await b.new_page(viewport={'width': 820, 'height': 800})
         errs = []
         pg.on('pageerror', lambda e: errs.append(str(e)))
